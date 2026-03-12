@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+
+  app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: graduation_app
+    volumes:
+      - .:/var/www
+    ports:
+      - "8000:8000"
+    command: php artisan serve --host=0.0.0.0
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8
+    container_name: graduation_db
+    restart: always
+    environment:
+      MYSQL_DATABASE: graduation
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: secret
+    ports:
+      - "3307:3306"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: graduation_phpmyadmin
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: db
