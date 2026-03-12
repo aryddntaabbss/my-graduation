@@ -6,7 +6,8 @@ RUN apt-get update && apt-get install -y \
     zip \
     curl \
     libpng-dev \
-    libzip-dev
+    libzip-dev \
+    libonig-dev
 
 RUN docker-php-ext-install pdo_mysql mbstring zip
 
