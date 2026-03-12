@@ -13,14 +13,19 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class GuestResource extends Resource
 {
     protected static ?string $model = Guest::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static ?string $navigationLabel = 'Guests';
 
-    protected static ?string $recordTitleAttribute = 'Guest';
+    protected static string|UnitEnum|null $navigationGroup = 'Invitation Management';
+
+    protected static ?string $recordTitleAttribute = 'name';
+
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     public static function form(Schema $schema): Schema
     {
@@ -30,13 +35,6 @@ class GuestResource extends Resource
     public static function table(Table $table): Table
     {
         return GuestsTable::configure($table);
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
     }
 
     public static function getPages(): array

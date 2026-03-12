@@ -1,31 +1,25 @@
 <?php
 
-namespace App\Filament\Resources\Guests\Tables;
+namespace App\Filament\Resources\Wishes\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class GuestsTable
+class WishesTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('name')
-                    ->searchable()
-                    ->sortable(),
-                TextColumn::make('slug')
-                    ->searchable()
-                    ->copyable(),
-                TextColumn::make('guest_count')
-                    ->sortable(),
-                IconColumn::make('attendance')
-                    ->boolean()
-                    ->label('RSVP'),
+                TextColumn::make('guest.name')
+                    ->label('Guest')
+                    ->searchable(),
+                TextColumn::make('message')
+                    ->limit(60)
+                    ->searchable(),
                 TextColumn::make('created_at')
                     ->since()
                     ->sortable(),

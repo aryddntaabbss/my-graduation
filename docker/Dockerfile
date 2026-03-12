@@ -7,9 +7,10 @@ RUN apt-get update && apt-get install -y \
     curl \
     libpng-dev \
     libzip-dev \
-    libonig-dev
+    libonig-dev \
+    libicu-dev
 
-RUN docker-php-ext-install pdo_mysql mbstring zip
+RUN docker-php-ext-install pdo_mysql mbstring zip intl
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 

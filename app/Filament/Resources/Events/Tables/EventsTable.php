@@ -1,31 +1,28 @@
 <?php
 
-namespace App\Filament\Resources\Guests\Tables;
+namespace App\Filament\Resources\Events\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class GuestsTable
+class EventsTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('name')
+                TextColumn::make('title')
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('slug')
-                    ->searchable()
-                    ->copyable(),
-                TextColumn::make('guest_count')
+                TextColumn::make('event_date')
+                    ->date()
                     ->sortable(),
-                IconColumn::make('attendance')
-                    ->boolean()
-                    ->label('RSVP'),
+                TextColumn::make('location')
+                    ->searchable()
+                    ->limit(40),
                 TextColumn::make('created_at')
                     ->since()
                     ->sortable(),
