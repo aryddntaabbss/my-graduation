@@ -7,4 +7,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/invitation/{slug}', [InvitationController::class, 'show']);
+Route::get('/invitation/{slug}', [InvitationController::class, 'show'])->name('invitation.show');
+Route::post('/invitation/{slug}/rsvp', [InvitationController::class, 'submitRsvp'])->name('invitation.rsvp');
